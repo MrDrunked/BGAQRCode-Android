@@ -573,13 +573,11 @@ public abstract class QRCodeView extends RelativeLayout implements Camera.Previe
         if (BGAQRCodeUtil.isPortrait(getContext())) {
             scaleX = viewWidth / cameraPreviewHeight;
             scaleY = viewHeight / cameraPreviewWidth;
-            result = new PointF((cameraPreviewHeight - originX) * scaleX, (cameraPreviewWidth - originY) * scaleY);
-            result.y = viewHeight - result.y;
-            result.x = viewWidth - result.x;
+            result = new PointF(originX * scaleX, originY * scaleY);//(1080-280)*1440/1080,(1920-320)*2660/1920
 
-            if (scanBoxAreaRect == null) {
-                result.y += statusBarHeight;
-            }
+//             if (scanBoxAreaRect == null) {
+//                 result.y += statusBarHeight;
+//             }
         } else {
             scaleX = viewWidth / cameraPreviewWidth;
             scaleY = viewHeight / cameraPreviewHeight;
@@ -590,8 +588,8 @@ public abstract class QRCodeView extends RelativeLayout implements Camera.Previe
         }
 
         if (scanBoxAreaRect != null) {
-            result.y += scanBoxAreaRect.top;
-            result.x += scanBoxAreaRect.left;
+            result.y += scanBoxAreaRect.top* scaleX;
+            result.x += scanBoxAreaRect.left* scaleY;
         }
 
         return result;
