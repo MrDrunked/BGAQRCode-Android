@@ -561,10 +561,10 @@ public class ScanBoxView extends View {
             float newHalfWidth = halfWidth * ratio;
             float newHalfHeight = halfHeight * ratio;
 
-            rect.left = (int) (centerX - newHalfWidth);
-            rect.right = (int) (centerX + newHalfWidth);
-            rect.top = (int) (centerY - newHalfHeight);
-            rect.bottom = (int) (centerY + newHalfHeight);
+            rect.left = (int) (centerX*ratio - newHalfWidth);
+            rect.right = (int) (centerX*ratio + newHalfWidth);
+            rect.top = (int) (centerY*ratio - newHalfHeight);
+            rect.bottom = (int) (centerY*ratio + newHalfHeight);
             return rect;
         } else {
             return null;
